@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from sqlalchemy.sql import text
-import statsmodels.api as sm
+from sklearn.linear_model import LinearRegression
 
 
 st.title("Test-Titel2")
@@ -68,7 +68,7 @@ if session_name:
 
 
 
-if st.button('Run Linear Regression with statsmodels'):
+if st.button('Show me the model results!'):
     with conn.session as s:
         # Query to fetch data from the session's table
         query = f'SELECT index1, index2, index3, index4 FROM {session_name}'
@@ -81,19 +81,19 @@ if st.button('Run Linear Regression with statsmodels'):
         X = df[['index1', 'index2', 'index3']]
         y = df['index4']
 
-        # Add a constant to the model (the intercept)
-        X = sm.add_constant(X)
+        # Initialize the Linear Regression model
+        model = LinearRegression()
 
-        # Fit the model using Ordinary Least Squares
-        model = sm.OLS(y, X).fit()
+        # Fit the model with the data
+        model.fit(X, y)
 
-        # Display the summary of the model
-        st.write(model.summary())
+        # Display the coefficients
+        st.write('Coefficients:', model.coef_)
+        st.write('Intercept:', model.intercept_)
 
-        # Optionally, you can show the predictions
+        # Optionally, you can predict and show the results
         predictions = model.predict(X)
         df['predicted_index4'] = predictions
-        st.write(df)
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
