@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from sqlalchemy.sql import text
-import statsmodels.api as sm
 
 
 st.title("Test-Titel2")
@@ -78,17 +77,17 @@ if st.button('Show me the model results!'):
         df = df.apply(pd.to_numeric)
 
         # Prepare the feature columns and the target column
-        X = df[['index1', 'index2', 'index3']]
-        y = df['index4']
+        X = df[['index1', 'index2', 'index3']].values
+        y = df['index4'].values
 
         # Add a constant to the model (the intercept)
-        X = sm.add_constant(X)
+        X = np.c_[np.ones(len(X)), X]
 
-        # Fit the model using Ordinary Least Squares
-        model = sm.OLS(y, X).fit()
+        # Fit the model using numpy.polyfit
+        coefficients = np.polyfit(X, y, 1)  # 1 indicates linear regression
 
-        # Display the summary of the model
-        st.write(model.summary())
+        # Display the coefficients
+        print("Coefficients: ", coefficients)
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')

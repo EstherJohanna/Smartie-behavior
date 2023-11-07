@@ -3,5 +3,5 @@ pandas
 SQLAlchemy
 numpy
 streamlit
-statsmodels
+
 
