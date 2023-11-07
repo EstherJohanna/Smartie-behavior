@@ -46,24 +46,24 @@ if session_name:
         st.write('Vielen Dank!')
         
 
-    if st.button('Update'):
-        query = f'select * from {session_name}'
-        session_result = conn.query(query, ttl=0)
-        session_index1 = [int(i) for i in session_result["index1"]]
-        session_index2 = [int(i) for i in session_result["index2"]]
-        session_index3 = [int(i) for i in session_result["index3"]]
-        session_index4 = [int(i) for i in session_result["index4"]]
-        
-        chart_data = pd.DataFrame(list(zip(session_index1, session_index2, session_index3, session_index4)), columns=["index1", "index2", "index3", "index4"])
+#    if st.button('Update'):
+#        query = f'select * from {session_name}'
+#        session_result = conn.query(query, ttl=0)
+#        session_index1 = [int(i) for i in session_result["index1"]]
+#        session_index2 = [int(i) for i in session_result["index2"]]
+#        session_index3 = [int(i) for i in session_result["index3"]]
+#        session_index4 = [int(i) for i in session_result["index4"]]
+#
+#        chart_data = pd.DataFrame(list(zip(session_index1, session_index2, session_index3, session_index4)), columns=["index1", "index2", "index3", "index4"])###
 
-        print(chart_data)
-        c = (
-            alt.Chart(chart_data)
-            .mark_circle()
-            .encode(x="index1", y="index2", tooltip=["index1", "index2", "index3", "index4"])
-        )
+#        print(chart_data)
+#        c = (
+#            alt.Chart(chart_data)
+#            .mark_circle()
+#            .encode(x="index1", y="index2", tooltip=["index1", "index2", "index3", "index4"])
+#        )
 
-        st.altair_chart(c, use_container_width=True)
+#        st.altair_chart(c, use_container_width=True)
 
 
 
