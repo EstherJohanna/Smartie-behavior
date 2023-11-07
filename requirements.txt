@@ -2,6 +2,6 @@ altair
 pandas
 SQLAlchemy
 numpy
-streamlit==1.5.0
-tensorflow-cpu
+streamlit
+statsmodels
 
