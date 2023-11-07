@@ -87,7 +87,7 @@ if session_name:
             coefficients, _, _, _ = np.linalg.lstsq(X, y, rcond=None)
 
             # Display the coefficients
-            print("Coefficients: ", coefficients)
+            st.write("Coefficients: ", coefficients)
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
