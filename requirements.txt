@@ -3,5 +3,5 @@ pandas
 SQLAlchemy
 numpy
 streamlit==1.5.0
-statsmodels==0.10.0
+tensorflow-cpu
 
