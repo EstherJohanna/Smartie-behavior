@@ -5,6 +5,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import altair as alt
+from sqlalchemy.sql import text
+
 
 st.title("Fragebogen zur Vorlesungsteilnahme")
 
@@ -14,7 +16,7 @@ conn = st.connection('pets_db', type='sql')
 session_name = st.text_input("Name of the session")
 if session_name:
     with conn.session as s:
-        s.execute(f'CREATE TABLE IF NOT EXISTS {session_name} (index1 TEXT NOT NULL, index2 TEXT NOT NULL, index3 TEXT NOT NULL, index4 TEXT NOT NULL);')
+        s.execute(text(f'CREATE TABLE IF NOT EXISTS {session_name} (index1 TEXT NOT NULL, index2 TEXT NOT NULL, index3 TEXT NOT NULL, index4 TEXT NOT NULL);'))
 
 
     listOfAnswers = ['Ich stimme gar nicht zu', 'Ich stimme nicht zu', 'Weder - noch', 'Ich stimme zu','Ich stimme voll und ganz zu']
@@ -35,7 +37,7 @@ if session_name:
         if session_name:
             with conn.session as s:
                 s.execute(
-                    f'INSERT INTO {session_name} (index1, index2, index3, index4) VALUES(:index1, :index2, :index3, :index4);',
+                    text(f'INSERT INTO {session_name} (index1, index2, index3, index4) VALUES(:index1, :index2, :index3, :index4);'),
                     params=dict(
                         index1=index1, index2=index2, index3=index3, index4=index4
                     ),
@@ -45,7 +47,7 @@ if session_name:
         
 
     if st.button('Update'):
-        session_result = conn.query(f'select * from {session_name}', ttl=0)
+        session_result = conn.query(text(f'select * from {session_name}', ttl=0))
         session_index1 = [int(i) for i in session_result["index1"]]
         session_index2 = [int(i) for i in session_result["index2"]]
         session_index3 = [int(i) for i in session_result["index3"]]
