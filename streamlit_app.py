@@ -65,7 +65,7 @@ if session_name:
 
 #        st.altair_chart(c, use_container_width=True)
 
-    password = st.text_input('Bitte geben Sie das Passwort ein, um das Modellergebnis zu sehen.')
+    password = st.text_input('Bitte geben Sie das Passwort ein.')
     if password == "HKA":
         with conn.session as s:
             # Query to fetch data from the session's table
@@ -104,5 +104,5 @@ if session_name:
 
 
 
-if password == "HKA":
-    st.write(f"Ergebnis: {answer}")
+#if password == "HKA":
+#    st.write(f"Ergebnis: {answer}")
