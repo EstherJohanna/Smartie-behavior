@@ -3,6 +3,4 @@ pandas
 streamlit
 SQLAlchemy
 numpy
-scikit-learn
-sklearn
 statsmodels
