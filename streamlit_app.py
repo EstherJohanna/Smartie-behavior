@@ -67,27 +67,31 @@ if session_name:
 
 
 
-if st.button('Show me the model results!'):
-    with conn.session as s:
-        # Query to fetch data from the session's table
-        query = f'SELECT index1, index2, index3, index4 FROM {session_name}'
-        df = pd.read_sql(query, s.connection())
+    if st.button('Show me the model results!'):
+        with conn.session as s:
+            # Query to fetch data from the session's table
+            query = f'SELECT index1, index2, index3, index4 FROM {session_name}'
+            df = pd.read_sql(query, s.connection())
 
-        # Convert data to numeric type, as they were stored as TEXT in the database
-        df = df.apply(pd.to_numeric)
+            # Convert data to numeric type, as they were stored as TEXT in the database
+            df = df.apply(pd.to_numeric)
 
-        # Prepare the feature columns and the target column
-        X = df[['index1', 'index2', 'index3']].values
-        y = df['index4'].values
+            # Prepare the feature columns and the target column
+            X = df[['index1', 'index2', 'index3']].values
+            y = df['index4'].values
 
-        # Add a constant to the model (the intercept)
-        X = np.c_[np.ones(len(X)), X]
+            # Flatten the arrays to 1 dimension
+            X = X.flatten()
+            y = y.flatten()
 
-        # Fit the model using numpy.polyfit
-        coefficients = np.polyfit(X, y, 1)  # 1 indicates linear regression
+            # Add a constant to the model (the intercept)
+            X = np.c_[np.ones(len(X)), X]
 
-        # Display the coefficients
-        print("Coefficients: ", coefficients)
+            # Fit the model using numpy.polyfit
+            coefficients = np.polyfit(X, y, 1)  # 1 indicates linear regression
+
+            # Display the coefficients
+            print("Coefficients: ", coefficients)
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
