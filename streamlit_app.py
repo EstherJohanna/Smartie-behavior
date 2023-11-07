@@ -8,7 +8,7 @@ import altair as alt
 from sqlalchemy.sql import text
 
 
-st.title("Test-Titel")
+st.title("Test-Titel1")
 
 conn = st.connection('pets_db', type='sql')
 
