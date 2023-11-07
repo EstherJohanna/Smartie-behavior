@@ -80,15 +80,11 @@ if session_name:
             X = df[['index1', 'index2', 'index3']].values
             y = df['index4'].values
 
-            # Flatten the arrays to 1 dimension
-            X = X.flatten()
-            y = y.flatten()
-
             # Add a constant to the model (the intercept)
             X = np.c_[np.ones(len(X)), X]
 
-            # Fit the model using numpy.polyfit
-            coefficients = np.polyfit(X, y, 1)  # 1 indicates linear regression
+            # Fit the model using numpy.linalg.lstsq
+            coefficients, _, _, _ = np.linalg.lstsq(X, y, rcond=None)
 
             # Display the coefficients
             print("Coefficients: ", coefficients)
