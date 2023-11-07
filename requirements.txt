@@ -5,3 +5,4 @@ SQLAlchemy
 numpy
 scikit-learn
 sklearn
+statsmodels
