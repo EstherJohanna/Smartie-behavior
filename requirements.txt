@@ -3,4 +3,7 @@ pandas
 streamlit
 SQLAlchemy
 sklearn
+<<<<<<< HEAD
 numpy
+=======
+>>>>>>> a25cd2a0456f2245b6718c4413e39fc8b956f641
