@@ -8,7 +8,7 @@ import altair as alt
 from sqlalchemy.sql import text
 
 
-st.title("Fragebogen zur Vorlesungsteilnahme")
+st.title("Test-Titel")
 
 conn = st.connection('pets_db', type='sql')
 
