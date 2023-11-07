@@ -47,7 +47,7 @@ if session_name:
         
 
     if st.button('Update'):
-        session_result = conn.query(text(f'select * from {session_name}', ttl=0))
+        session_result = conn.query(text(f'select * from {session_name}'), ttl=0)
         session_index1 = [int(i) for i in session_result["index1"]]
         session_index2 = [int(i) for i in session_result["index2"]]
         session_index3 = [int(i) for i in session_result["index3"]]
