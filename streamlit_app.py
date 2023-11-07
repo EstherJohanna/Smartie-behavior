@@ -1,5 +1,5 @@
 #run locally in Terminal:  streamlit run streamlit-example\streamlit_app.py
-#run on website: commit and push: https://estherjohanna-streamlit-example-streamlit-app-egl5jh.streamlit.app/
+#run on website: commit and push: https://smartie-behavior-mmz5gtkp2523426eymrmph.streamlit.app/
 
 import streamlit as st
 import pandas as pd
