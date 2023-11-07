@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from sqlalchemy.sql import text
+from sklearn.linear_model import LinearRegression
 
 
 st.title("Test-Titel2")
@@ -20,13 +21,13 @@ if session_name:
 
 
     listOfAnswers = ['Ich stimme gar nicht zu', 'Ich stimme nicht zu', 'Weder - noch', 'Ich stimme zu','Ich stimme voll und ganz zu']
-    answer1 = st.radio('Ich bin ein Detektiv, der die Geheimnisse des menschlichen Verhaltens lüftet, wenn ich eine Vorlesung über Human Factors besuche.', listOfAnswers)
+    answer1 = st.radio('Ich mag Schokolade?', listOfAnswers)
     index1 = listOfAnswers.index(answer1)
 
-    answer2 = st.radio('Meine Freunde würden mir ein ‚High Five‘ dafür geben, dass ich regelmäßig an Human Factors-Vorlesungen teilnehme.', listOfAnswers)
+    answer2 = st.radio('Meine Freunde finden bunte Kreise toll.', listOfAnswers)
     index2 = listOfAnswers.index(answer2)
 
-    answer3 = st.radio('Ich kann einen engen Zeitplan überwinden, um Zeit für den Besuch von Human Factors-Vorlesungen zu finden.', listOfAnswers)
+    answer3 = st.radio('Es gibt Schokolade in meiner Nähe.', listOfAnswers)
     index3 = listOfAnswers.index(answer3)
 
     answer4 = st.radio('Gäbe es für die Teilnahme an Human Factors-Vorlesungen „Smarty-Punkte", würde ich sie einsammeln.', listOfAnswers)
@@ -64,6 +65,36 @@ if session_name:
         )
 
         st.altair_chart(c, use_container_width=True)
+
+
+
+if st.button('Run Linear Regression'):
+    with conn.session as s:
+        # Query to fetch data from the session's table
+        query = f'SELECT index1, index2, index3, index4 FROM {session_name}'
+        df = pd.read_sql(query, s.connection())
+
+        # Convert data to numeric type, as they were stored as TEXT in the database
+        df = df.apply(pd.to_numeric)
+
+        # Prepare the feature columns and the target column
+        X = df[['index1', 'index2', 'index3']]
+        y = df['index4']
+
+        # Initialize the Linear Regression model
+        model = LinearRegression()
+
+        # Fit the model with the data
+        model.fit(X, y)
+
+        # Display the coefficients
+        st.write('Coefficients:', model.coef_)
+        st.write('Intercept:', model.intercept_)
+
+        # Optionally, you can predict and show the results
+        predictions = model.predict(X)
+        df['predicted_index4'] = predictions
+        st.write(df)
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
