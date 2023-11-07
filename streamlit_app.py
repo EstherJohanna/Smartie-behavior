@@ -8,12 +8,12 @@ import altair as alt
 from sqlalchemy.sql import text
 
 
-st.title("Test-Titel2")
+st.title("Smartie-Einsammel-Verhalten")
 
 conn = st.connection('pets_db', type='sql')
 
 
-session_name = st.text_input("Name of the session")
+session_name = st.text_input("Name der Session")
 if session_name:
     with conn.session as s:
         s.execute(text(f'CREATE TABLE IF NOT EXISTS {session_name} (index1 TEXT NOT NULL, index2 TEXT NOT NULL, index3 TEXT NOT NULL, index4 TEXT NOT NULL);'))
@@ -65,7 +65,7 @@ if session_name:
 
 #        st.altair_chart(c, use_container_width=True)
 
-    password = st.text_input('Bitte geben Sie das Passwort ein.')
+    password = st.text_input('Bitte geben Sie das Passwort ein, um das Modellergebnis zu sehen.')
     if password == "HKA":
         with conn.session as s:
             # Query to fetch data from the session's table
