@@ -88,8 +88,8 @@ if session_name:
 
             # Display the coefficients
             st.write("Beziehungsstärke von 'Ich mag Schokolade' zu 'Ich hole Smarties ab': ", coefficients[1])
-            st.write("Beziehungsstärke von 'Meine Freunde finden bunte Kreise toll' zu 'Ich hole Smarties ab': ", coefficients[1])
-            st.write("Beziehungsstärke von 'Es gibt Schokolade in meiner Nähe' zu 'Ich hole Smarties ab': ", coefficients[1])
+            st.write("Beziehungsstärke von 'Meine Freunde finden bunte Kreise toll' zu 'Ich hole Smarties ab': ", coefficients[2])
+            st.write("Beziehungsstärke von 'Es gibt Schokolade in meiner Nähe' zu 'Ich hole Smarties ab': ", coefficients[3])
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
