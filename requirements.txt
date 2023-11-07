@@ -4,3 +4,4 @@ streamlit
 SQLAlchemy
 numpy
 scikit-learn
+sklearn
