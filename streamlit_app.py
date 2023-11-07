@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 from sqlalchemy.sql import text
-from sklearn.linear_model import LinearRegression
+import statsmodels.api as sm
 
 
 st.title("Test-Titel2")
@@ -81,19 +81,14 @@ if st.button('Show me the model results!'):
         X = df[['index1', 'index2', 'index3']]
         y = df['index4']
 
-        # Initialize the Linear Regression model
-        model = LinearRegression()
+        # Add a constant to the model (the intercept)
+        X = sm.add_constant(X)
 
-        # Fit the model with the data
-        model.fit(X, y)
+        # Fit the model using Ordinary Least Squares
+        model = sm.OLS(y, X).fit()
 
-        # Display the coefficients
-        st.write('Coefficients:', model.coef_)
-        st.write('Intercept:', model.intercept_)
-
-        # Optionally, you can predict and show the results
-        predictions = model.predict(X)
-        df['predicted_index4'] = predictions
+        # Display the summary of the model
+        st.write(model.summary())
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')

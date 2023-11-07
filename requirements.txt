@@ -2,5 +2,4 @@ altair
 pandas
 SQLAlchemy
 numpy
-scikit-learn==0.24.2
-streamlit==0.88.0
+statsmodels
