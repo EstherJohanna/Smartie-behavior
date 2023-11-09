@@ -29,7 +29,7 @@ if session_name:
     answer3 = st.radio('Ich denke, dass ich momentan Zugriff auf Schokolade hätte.', listOfAnswers)
     index3 = listOfAnswers.index(answer3)
 
-    answer4 = st.radio('Wenn im Vorlesungssaal etwas Buntes vorne auf dem Tisch liegt, werde ich bei nächster Gelegenheit nachschauen, was es ist.', listOfAnswers)
+    answer4 = st.radio('Gäbe es Schokolade, würde ich sie mir nehmen.', listOfAnswers)
     index4 = listOfAnswers.index(answer4)
 
 
