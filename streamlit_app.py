@@ -8,28 +8,28 @@ import altair as alt
 from sqlalchemy.sql import text
 
 
-st.title("Smartie-Einsammel-Verhalten")
+st.title("Datenerhebung: Smartie-Einsammel-Verhalten")
 
 conn = st.connection('pets_db', type='sql')
 
 
-session_name = st.text_input("Name der Session")
+session_name = st.text_input("Session-Name")
 if session_name:
     with conn.session as s:
         s.execute(text(f'CREATE TABLE IF NOT EXISTS {session_name} (index1 TEXT NOT NULL, index2 TEXT NOT NULL, index3 TEXT NOT NULL, index4 TEXT NOT NULL);'))
 
 
     listOfAnswers = ['Ich stimme gar nicht zu', 'Ich stimme nicht zu', 'Weder - noch', 'Ich stimme zu','Ich stimme voll und ganz zu']
-    answer1 = st.radio('Ich mag Schokolade?', listOfAnswers)
+    answer1 = st.radio('Ich mag Schokolade.', listOfAnswers)
     index1 = listOfAnswers.index(answer1)
 
-    answer2 = st.radio('Meine Freunde finden bunte Kreise toll.', listOfAnswers)
+    answer2 = st.radio('In meinem Freundeskreis essen wir gern Süßigkeiten.', listOfAnswers)
     index2 = listOfAnswers.index(answer2)
 
-    answer3 = st.radio('Es gibt Schokolade in meiner Nähe.', listOfAnswers)
+    answer3 = st.radio('Ich denke, dass ich momentan Zugriff auf Schokolade hätte.', listOfAnswers)
     index3 = listOfAnswers.index(answer3)
 
-    answer4 = st.radio('Gäbe es für die Teilnahme an Human Factors-Vorlesungen „Smarty-Punkte", würde ich sie einsammeln.', listOfAnswers)
+    answer4 = st.radio('Wenn im Vorlesungssaal etwas Buntes vorne auf dem Tisch liegt, werde ich bei nächster Gelegenheit nachschauen, was es ist.', listOfAnswers)
     index4 = listOfAnswers.index(answer4)
 
 
@@ -65,7 +65,7 @@ if session_name:
 
 #        st.altair_chart(c, use_container_width=True)
 
-    password = st.text_input('Bitte geben Sie das Passwort ein, um das Modellergebnis zu sehen.')
+    password = st.text_input('Bitte warten Sie auf die Anderen und geben dann das Passwort ein, um das Modellergebnis zu sehen.')
     if password == "HKA":
         with conn.session as s:
             # Query to fetch data from the session's table
