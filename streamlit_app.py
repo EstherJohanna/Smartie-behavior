@@ -65,7 +65,7 @@ if session_name:
 
 #        st.altair_chart(c, use_container_width=True)
 
-    password = st.text_input('Bitte warten Sie auf die Anderen und geben dann das Passwort ein, um das Modellergebnis zu sehen.')
+    password = st.text_input('Nach einer Erklärung teile ich Ihnen das Passwort mit.')
     if password == "Bosch":
         with conn.session as s:
             # Query to fetch data from the session's table
