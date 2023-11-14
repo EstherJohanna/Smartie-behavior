@@ -8,7 +8,7 @@ import altair as alt
 from sqlalchemy.sql import text
 
 
-st.title("Datenerhebung: Smartie-Einsammel-Verhalten")
+st.title("Datenerhebung")
 
 conn = st.connection('pets_db', type='sql')
 
@@ -66,7 +66,7 @@ if session_name:
 #        st.altair_chart(c, use_container_width=True)
 
     password = st.text_input('Bitte warten Sie auf die Anderen und geben dann das Passwort ein, um das Modellergebnis zu sehen.')
-    if password == "HKA":
+    if password == "Bosch":
         with conn.session as s:
             # Query to fetch data from the session's table
             query = f'SELECT index1, index2, index3, index4 FROM {session_name}'
@@ -86,9 +86,9 @@ if session_name:
             coefficients, _, _, _ = np.linalg.lstsq(X, y, rcond=None)
 
             # Display the coefficients
-            st.write("Beziehungsstärke von 'Ich mag Schokolade' zu 'Ich hole Smarties ab': ", coefficients[1])
-            st.write("Beziehungsstärke von 'Meine Freunde finden bunte Kreise toll' zu 'Ich hole Smarties ab': ", coefficients[2])
-            st.write("Beziehungsstärke von 'Es gibt Schokolade in meiner Nähe' zu 'Ich hole Smarties ab': ", coefficients[3])
+            st.write("Zahl 1: ", coefficients[1])
+            st.write("Zahl 2: ", coefficients[2])
+            st.write("Zahl 3: ", coefficients[3])
 
 #st.title("Ergebnis: Wie gut passt die Theorie des geplanten Verhaltens auf Sie?")
 #password = st.text_input('Bitte geben Sie das Passwort ein.')
